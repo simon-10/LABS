@@ -1,19 +1,19 @@
 package edu.mum.cs.cs425.studentmgmt.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.domain.Page;
 
 import edu.mum.cs.cs425.studentmgmt.model.Student;
-import edu.mum.cs.cs425.studentmgmt.repository.StudentRepository;
 
-@Service
-public class StudentService {
-	
-	@Autowired
-	private StudentRepository studentRepository;
-	
-	public Iterable<Student> getAllStudents(){
-		return studentRepository.findAll();
-	}
+
+public interface StudentService {
+	 public List<Student> getAllStudents();
+	 public  Page<Student> getAllStudentsPaged(int pageNo);
+	 public  Student saveStudent(Student student);
+	 public  Student getStudentById(Long studentId);
+	void deleteStudentById(Long studentId);
+	 public List<Student> searchStudents(String searchString);
 
 }
