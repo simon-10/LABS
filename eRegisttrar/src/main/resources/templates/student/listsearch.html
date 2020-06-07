@@ -42,7 +42,7 @@
             </span>
         </div>
         <!-- Search panel -->
-        <form id="searchStudentForm" method="get" action="/eregistrar/student/search/currentPageNo">
+        <form id="searchStudentForm" method="get" action="/eregistrar/student/search">
             <div style="margin-top:1em;" class="row">
                 <div class="col-md-12">
                     <div class="input-group">
@@ -91,20 +91,7 @@
                 </tbody>
             </table>
         </div>
-        <div>
-            Total Items: [[${totalItems}]] - Page: [[${currentPageNo+1}]]  of [[${totalPages}]]
-            &nbsp; - &nbsp;
 
-            <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                <a th:href="@{'/eregistrar/student/lists/' + ${i}}">[[${i}]]</a> &nbsp;&nbsp;
-
-
-
-
-            </span>
-
-
-        </div>
     </div>
 
 

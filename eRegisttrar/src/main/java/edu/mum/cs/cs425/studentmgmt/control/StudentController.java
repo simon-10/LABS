@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,7 +28,7 @@ public class StudentController {
 	
 	private StudentService studentService;
 	
-	
+	 
 	
 	@Autowired
     public StudentController(StudentService studentService) {
@@ -36,13 +37,38 @@ public class StudentController {
 	}
 
 	@GetMapping(value = {"/eregistrar/student/list"})
-    public ModelAndView listBooks(@RequestParam(defaultValue = "0") int pageno) {
+    public ModelAndView listBooks(@RequestParam(value = "pageN", defaultValue = "0") int pageno) {
+	    Page<Student> pages=studentService.getAllStudentsPaged(pageno);
+	    System.out.println("page number"+pageno);
+        Long totalItems=pages.getTotalElements();
+        int totalPages=pages.getTotalPages();
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("students", studentService.getAllStudentsPaged(pageno));
+        modelAndView.addObject("students", pages);
         modelAndView.addObject("currentPageNo", pageno);
+        modelAndView.addObject("totalItems", totalItems);
+        modelAndView.addObject("totalPages", totalPages);
+
         modelAndView.setViewName("student/list");
         return modelAndView;
     }
+
+
+    @GetMapping("/eregistrar/student/lists/{page}")
+    public ModelAndView listBooks2(@PathVariable(value="page") int pageno) {
+        Page<Student> pages=studentService.getAllStudentsPaged(pageno);
+        System.out.println("page number"+pageno);
+        Long totalItems=pages.getTotalElements();
+        int totalPages=pages.getTotalPages();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("students", pages);
+        modelAndView.addObject("currentPageNo", pageno);
+        modelAndView.addObject("totalItems", totalItems);
+        modelAndView.addObject("totalPages", totalPages);
+
+        modelAndView.setViewName("student/list");
+        return modelAndView;
+    }
+
 
     @GetMapping(value = {"/eregistrar/student/new"})
     public String displayNewBookForm(Model model) {
@@ -92,14 +118,23 @@ public class StudentController {
     
     
     
-    @GetMapping(value = {"/eregistrar/student/search", "/student/search"})
-    public ModelAndView searchBooks(@RequestParam String searchString) {
+    @GetMapping(value = {"/eregistrar/student/search/{pageNo}"})
+    public ModelAndView searchBooks(@RequestParam String searchString, @PathVariable int pageNo) {
         ModelAndView modelAndView = new ModelAndView();
-        List<Student> students = studentService.searchStudents(searchString);
-        modelAndView.addObject("students", students);
+        Page<Student> pages = studentService.searchStudents(searchString,pageNo);
+
+        System.out.println("page number"+pageNo);
+        Long totalItems=pages.getTotalElements();
+        int totalPages=pages.getTotalPages();
+
+        modelAndView.addObject("students", pages);
+        modelAndView.addObject("currentPageNo", pageNo);
+        modelAndView.addObject("totalItems", totalItems);
+        modelAndView.addObject("totalPages", totalPages);
         modelAndView.addObject("searchString", searchString);
-        modelAndView.addObject("studentsCount", students.size());
+
         modelAndView.setViewName("student/list");
+
         return modelAndView;
     }
 }

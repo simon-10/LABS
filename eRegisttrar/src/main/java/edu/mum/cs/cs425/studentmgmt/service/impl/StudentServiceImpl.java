@@ -35,7 +35,8 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Page<Student> getAllStudentsPaged(int pageNo) {
 		// TODO Auto-generated method stub
-		return studentRepository.findAll(PageRequest.of(pageNo, 6, Sort.by("firstName")));
+		return studentRepository.findAll(PageRequest.of(pageNo, 3, Sort.by("firstName")));
+
 	}
 
 	@Override
@@ -60,13 +61,14 @@ public class StudentServiceImpl implements StudentService {
 	
 	
 	@Override
-	 public List<Student> searchStudents(String searchString) {
-		List<Student> firstname=studentRepository.findStudentsByfirstNameContains(searchString);
-		List<Student> studentnumber=studentRepository.findStudentsBystudentNumberContains(searchString);
-		List<Student> lastname=studentRepository.findStudentsBylastNameContains(searchString);
-		if(firstname.size()!=0)
+	 public Page<Student> searchStudents(String searchString, int pageNo) {
+		Page<Student> firstname=studentRepository.findStudentsByfirstNameContains(searchString,PageRequest.of(pageNo,3));
+		Page<Student> studentnumber=studentRepository.findStudentsBystudentNumberContains(searchString,PageRequest.of(pageNo,3));
+		Page<Student> lastname=studentRepository.findStudentsBylastNameContains(searchString,PageRequest.of(pageNo,3));
+
+		if(firstname.getNumberOfElements()!=0)
 			return firstname;
-		if(lastname.size()!=0)
+		if(lastname.getNumberOfElements()!=0)
 			return lastname;
 		return studentnumber;
 		

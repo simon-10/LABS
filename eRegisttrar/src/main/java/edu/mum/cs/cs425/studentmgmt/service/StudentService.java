@@ -14,6 +14,6 @@ public interface StudentService {
 	 public  Student saveStudent(Student student);
 	 public  Student getStudentById(Long studentId);
 	void deleteStudentById(Long studentId);
-	 public List<Student> searchStudents(String searchString);
+	 public Page<Student> searchStudents(String searchString,int pageNo);
 
 }
