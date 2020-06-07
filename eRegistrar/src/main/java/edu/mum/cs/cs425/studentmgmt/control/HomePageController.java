@@ -1,5 +1,6 @@
 package edu.mum.cs.cs425.studentmgmt.control;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
