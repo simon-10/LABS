@@ -28,7 +28,7 @@ public class HomeController {
 
     @GetMapping(value = {"/secured/home","/eregistrar/secured/home"})
     public String home2() {
-        return "index";
+      return "secured/index";
     }
 
 }

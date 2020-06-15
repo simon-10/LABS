@@ -52,10 +52,12 @@ public class StudentController {
                                      BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
+            System.out.println("inside error");
             return "secured/new";
         }
         
         student = studentService.saveStudent(student);
+        System.out.println("outside");
         return "redirect:/eregistrar/secured/services/list";
     }
 

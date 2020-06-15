@@ -1,19 +1,19 @@
 
 INSERT INTO `security`.`users`(`user_id`,`email`,`first_name`,`last_name`,`middle_name`,`password`,`username`)
-VALUES(1,'admin@miu.edu','adminfname','adminlname', 'adminmname','$2a$10$0dflzX9XT8bj7E9ia.GuxO9ZM0iPmIXmjzx23dDHqmYXMkW1uIUw.','admin');
+VALUES(1,'ana.admin@eregistrar.com','adminfname','adminlname', 'adminmname','$2a$10$0dflzX9XT8bj7E9ia.GuxO9ZM0iPmIXmjzx23dDHqmYXMkW1uIUw.','ana.admin@eregistrar.com');
 
 INSERT INTO `security`.`users`(`user_id`,`email`,`first_name`,`last_name`,`middle_name`,`password`,`username`)
-VALUES(2,'simon@miu.edu','simon','welde', 'abraham','$2a$10$x0OYgwCDO11mFsD/48Fjj.10qTvb/VXDOC.khlMKtpWsWOf/qzDBq','simon');
+VALUES(2,'bob.registrar@eregistrar.com','simon','welde', 'abraham','$2a$10$x0OYgwCDO11mFsD/48Fjj.10qTvb/VXDOC.khlMKtpWsWOf/qzDBq','bob.registrar@eregistrar.com');
 
 INSERT INTO `security`.`users`(`user_id`,`email`,`first_name`,`last_name`,`middle_name`,`password`,`username`)
-VALUES(3,'dani@miu.edu','daniel','hagos', 'mebrahtu','$2a$10$eXIHq3dmujNi4WYGAFh98u2erayUbnJXOOlY.lHthrZvDOvC/78JS','dani');
+VALUES(3,'carlos.student@eregistrar.com','daniel','hagos', 'mebrahtu','$2a$10$eXIHq3dmujNi4WYGAFh98u2erayUbnJXOOlY.lHthrZvDOvC/78JS','carlos.student@eregistrar.com');
 
 
 
 
 INSERT INTO `security`.`roles`(`role_id`,`name`)VALUES('1','ROLE_ADMIN');
-INSERT INTO `security`.`roles`(`role_id`,`name`)VALUES('3','ROLE_REGISTRAR');
-INSERT INTO `security`.`roles`(`role_id`,`name`)VALUES('2','ROLE_STUDENT');
+INSERT INTO `security`.`roles`(`role_id`,`name`)VALUES('2','ROLE_REGISTRAR');
+INSERT INTO `security`.`roles`(`role_id`,`name`)VALUES('3','ROLE_STUDENT');
 
 
 
